@@ -288,6 +288,10 @@ footer{padding:30px 0 110px;color:var(--muted);font-size:14px;border-top:1px sol
 (function(){
   var ACTION="https://docs.google.com/forms/d/e/1FAIpQLSdBlu08PpUCkMtzH_Zkbh6XxV_7I2Uppym44Yj6mUqhNp0w2A/formResponse";
   var VIEW="https://docs.google.com/forms/d/e/1FAIpQLSdBlu08PpUCkMtzH_Zkbh6XxV_7I2Uppym44Yj6mUqhNp0w2A/viewform";
+  Array.prototype.forEach.call(document.querySelectorAll('a[href="#interest"]'),function(a){
+    a.addEventListener("click",function(e){e.preventDefault();document.getElementById("interest").scrollIntoView();});
+  });
+  if(location.hash==="#interest"){try{history.replaceState(null,"",location.pathname)}catch(_){}window.scrollTo(0,0);}
   var f=document.getElementById("iform"),btn=document.getElementById("formBtn"),err=document.getElementById("formErr"),done=document.getElementById("done");
   function fail(){
     btn.disabled=false;btn.textContent="Count us interested";
