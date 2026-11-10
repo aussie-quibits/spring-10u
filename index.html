@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="description" content="An informal spring 10U development hockey team. Invited families can share their interest here.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spring 10U Development Team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Albert+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: the page is a rink read top to bottom. Center ice (hero),
+   cross the blue line (the pitch), finish at the goal line and crease (the form). */
+:root{
+  --ice:#EDF2F5;
+  --frost:#FFFFFF;
+  --ink:#0D1B2A;
+  --muted:#4C5C6C;
+  --red:#C8202F;
+  --blue:#1D4E9E;
+  --hair:rgba(13,27,42,.14);
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Albert Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ice);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.95;margin:0;text-wrap:balance;letter-spacing:.005em}
+p{margin:0}
+a{color:inherit}
+.wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 22px}
+.eyebrow{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;color:var(--blue)}
+
+/* ---------- center ice ---------- */
+.hero{position:relative;overflow:hidden;background:var(--frost);padding:34px 0 72px}
+.hero::before{ /* center red line */
+  content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--red)}
+.circle{position:absolute;right:-170px;top:-70px;width:560px;height:560px;border:10px solid var(--blue);border-radius:50%;opacity:.16;pointer-events:none}
+.circle::after{content:"";position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px;border-radius:50%;background:var(--blue)}
+.cuts{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
+.topbar{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:56px}
+.mark{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:900;font-size:20px;letter-spacing:.06em;text-transform:uppercase}
+.mark i{display:block;width:26px;height:26px;border-radius:50%;background:var(--ink);box-shadow:inset 0 -6px 0 rgba(255,255,255,.18)}
+.tag{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid var(--ink);border-radius:999px;padding:5px 12px;white-space:nowrap}
+.hero-body{position:relative;display:flex;flex-direction:column;gap:22px;max-width:760px}
+h1{font-size:clamp(50px,11vw,96px)}
+h1 em{font-style:normal;color:var(--red)}
+.lede{font-size:clamp(18px,2.4vw,21px);max-width:34em;color:var(--ink)}
+.lede strong{font-weight:700}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:#fff;background:var(--red);padding:16px 26px;border-radius:6px;border:0;cursor:pointer;box-shadow:0 5px 0 #8f1420;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(2px);box-shadow:0 3px 0 #8f1420}
+.btn:active{transform:translateY(5px);box-shadow:0 0 0 #8f1420}
+.btn:focus-visible,.faq summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.btn[aria-disabled="true"]{background:#9aa5af;box-shadow:0 5px 0 #7b8791;cursor:default;transform:none}
+.fine{font-size:15px;color:var(--muted)}
+
+/* ---------- blue line ---------- */
+.blueline{height:14px;background:var(--blue)}
+section{padding:64px 0}
+.sec-head{display:flex;flex-direction:column;gap:12px;margin-bottom:30px;max-width:700px}
+h2{font-size:clamp(36px,6.4vw,60px)}
+.sec-head p{color:var(--muted);font-size:18px}
+
+/* what we saw */
+.saw{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:0;border-top:2px solid var(--ink)}
+.saw li{list-style:none;padding:22px 20px 24px 0;border-bottom:1px solid var(--hair);display:flex;flex-direction:column;gap:8px}
+.saw{margin:0;padding:0}
+.saw h3{font-size:26px}
+.saw p{font-size:16px;color:var(--muted);max-width:26em}
+.aside{margin-top:26px;font-weight:700;font-size:18px}
+
+/* they're ten */
+.ten{background:var(--ink);color:#fff;padding:70px 0;position:relative;overflow:hidden}
+.ten .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:28px 56px}
+.num{font-family:var(--display);font-weight:900;font-size:clamp(150px,30vw,280px);line-height:.78;color:transparent;-webkit-text-stroke:3px #fff;letter-spacing:-.02em;flex:none}
+.ten-copy{flex:1 1 300px;display:flex;flex-direction:column;gap:16px;max-width:520px}
+.ten h2{font-size:clamp(38px,6.6vw,64px)}
+.ten h2 em{font-style:normal;color:#ff5a67}
+.ten p{color:#c9d3dc;font-size:18px}
+
+/* the plan */
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--frost);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px;border-left:6px solid var(--blue)}
+.card h3{font-size:25px}
+.card p{font-size:16px;color:var(--muted)}
+
+/* steps */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;margin:0;padding:0}
+.steps li{list-style:none;counter-increment:s;display:flex;flex-direction:column;gap:6px}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:900;font-size:54px;line-height:1;color:var(--red)}
+.steps h3{font-size:24px}
+.steps p{font-size:16px;color:var(--muted)}
+
+/* ---------- goal line + crease ---------- */
+.goal{position:relative;background:var(--frost);padding:0 0 72px;border-top:10px solid var(--red);overflow:hidden}
+.crease{position:absolute;left:50%;top:0;width:min(760px,150vw);aspect-ratio:2/1;transform:translateX(-50%);background:rgba(29,78,158,.10);border:6px solid var(--red);border-top:0;border-radius:0 0 999px 999px;pointer-events:none}
+.goal .wrap{position:relative;padding-top:60px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.goal h2{max-width:11em}
+.goal .sub{max-width:32em;color:var(--muted);font-size:18px}
+.asks{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:6px 0 10px;padding:0}
+.asks li{list-style:none;background:var(--ice);border:1.5px solid var(--ink);border-radius:999px;padding:7px 14px;font-size:15px;font-weight:700}
+.goal .btn{font-size:24px;padding:17px 26px}
+.iform{width:100%;max-width:520px;display:flex;flex-direction:column;gap:14px;text-align:left;background:var(--frost);border:2px solid var(--ink);border-radius:12px;padding:22px;box-shadow:0 8px 0 rgba(13,27,42,.10)}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-weight:700;font-size:15px}
+.field input{font:inherit;font-size:17px;padding:12px 13px;border:1.5px solid #9aa7b3;border-radius:7px;background:#fff;color:var(--ink);width:100%}
+.field input:focus{outline:3px solid rgba(29,78,158,.35);border-color:var(--blue)}
+.field input.bad{border-color:var(--red)}
+.row{display:flex;gap:12px}.grow{flex:1 1 auto}.num-f{flex:0 0 96px}
+.iform .btn{width:100%;margin-top:4px}
+.iform .fine{text-align:center}
+.err{color:var(--red);font-weight:700;font-size:15px}
+.done{width:100%;max-width:520px;background:var(--ink);color:#fff;border-radius:12px;padding:30px 24px;display:flex;flex-direction:column;gap:10px}
+.done h3{font-size:34px}.done p{color:#c9d3dc}
+[hidden]{display:none!important}
+
+
+/* faq */
+.faq{display:flex;flex-direction:column;border-top:2px solid var(--ink);max-width:760px}
+.faq details{border-bottom:1px solid var(--hair);padding:4px 0}
+.faq summary{cursor:pointer;list-style:none;font-weight:700;font-size:18px;padding:16px 34px 16px 0;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:10px;font-family:var(--display);font-size:30px;color:var(--red)}
+.faq details[open] summary::after{content:"–"}
+.faq p{padding:0 0 18px;color:var(--muted);max-width:60ch}
+
+footer{padding:30px 0 110px;color:var(--muted);font-size:14px;border-top:1px solid var(--hair)}
+
+/* sticky mobile CTA */
+.stick{position:fixed;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(237,242,245,.94);backdrop-filter:blur(8px);border-top:1px solid var(--hair);display:none;z-index:5}
+.stick .btn{width:100%;font-size:20px;padding:13px 18px;box-shadow:0 4px 0 #8f1420}
+@media (max-width:640px){.stick{display:block}.topbar{margin-bottom:40px}.circle{width:420px;height:420px;right:-210px;top:-40px}}
+@media (min-width:641px){footer{padding-bottom:40px}}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero-body>*{animation:in .6s cubic-bezier(.2,.7,.2,1) both}
+  .hero-body>*:nth-child(2){animation-delay:.07s}
+  .hero-body>*:nth-child(3){animation-delay:.14s}
+  .hero-body>*:nth-child(4){animation-delay:.21s}
+  @keyframes in{from{transform:translateY(14px)}to{transform:none}}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="circle" aria-hidden="true"></div>
+  <svg class="cuts" aria-hidden="true" viewBox="0 0 1000 600" preserveAspectRatio="none" fill="none" stroke="#1D4E9E" stroke-opacity=".13" stroke-width="1.5" stroke-linecap="round">
+    <path d="M-20 430 C 180 380, 300 520, 520 470"/>
+    <path d="M90 560 C 260 500, 420 590, 640 520"/>
+    <path d="M380 120 C 520 80, 640 170, 800 110"/>
+    <path d="M40 210 C 130 190, 200 250, 300 225"/>
+  </svg>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="mark"><i aria-hidden="true"></i>Spring 10U</div>
+      <div class="tag">By invitation</div>
+    </div>
+    <div class="hero-body">
+      <p class="eyebrow">Spring 2027 · 10U development team</p>
+      <h1>A spring team built around <em>good kids and good families.</em></h1>
+      <p class="lede">We're putting together an informal 10U team to play alongside the spring house league season. <strong>Your player fits the kind of group we want to build</strong>, and we'd like to know if your family is interested.</p>
+      <div class="cta-row">
+        <a class="btn" href="#interest">Tell us you're interested</a>
+        <span class="fine">Takes about a minute. No commitment.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="blueline" role="presentation"></div>
+
+<main>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The team</p>
+      <h2>Extra hockey, with the right group</h2>
+      <p>This is an informal supplement to spring house league. Your player keeps playing house league and adds a second team focused on getting better together.</p>
+    </div>
+    <div class="plan">
+      <div class="card"><h3>Alongside house league</h3><p>It adds to the spring house league season and doesn't replace it. Think of it as extra ice with a consistent group.</p></div>
+      <div class="card"><h3>Development first</h3><p>Practices built around skating, puck skills and learning to play as a team. Every player gets coached, and every player plays.</p></div>
+      <div class="card"><h3>Practices close to home</h3><p>On the ice at Polar Ice Wake Forest and Polar Ice Raleigh.</p></div>
+      <div class="card"><h3>Local tournaments, light travel</h3><p>Mostly local tournaments, with a little light travel. Enough to give the kids real games without taking over your spring.</p></div>
+    </div>
+    <p class="aside">Everything else, including schedule and cost, is still open and will be shaped by how many families are interested.</p>
+  </div>
+</section>
+
+<div class="ten">
+  <div class="wrap">
+    <div class="num" aria-hidden="true">10</div>
+    <div class="ten-copy">
+      <p class="eyebrow" style="color:#9db8e6">Why we're doing this</p>
+      <h2>They're ten. <em>The scoreboard can wait.</em></h2>
+      <p>Nobody knows who the best players will be at 14. What helps most at this age is good coaching, plenty of puck touches, and teammates they're excited to see at the rink.</p>
+      <p>So the goal is to get good kids and good families together now, and build bonds that carry into future house league seasons and onto travel teams down the road.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Who it's for</p>
+      <h2>The culture comes first</h2>
+      <p>We're building this group around how kids play and how families show up, more than around the stat sheet.</p>
+    </div>
+    <ul class="saw">
+      <li><h3>Effort every shift</h3><p>Kids who work just as hard when the game isn't going their way.</p></li>
+      <li><h3>Coachable</h3><p>Kids who listen, try what they're taught, and want to learn.</p></li>
+      <li><h3>Good teammates</h3><p>Kids who share the puck and are happy when someone else scores.</p></li>
+      <li><h3>Good families</h3><p>Parents who cheer for every kid on the bench and keep it fun.</p></li>
+    </ul>
+    <p class="aside">You're receiving this invitation because we think your player and your family fit that culture.</p>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The process</p>
+      <h2>Three steps, and only the first is yours</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Raise your hand</h3><p>Fill out the four boxes below. It commits you to nothing.</p></li>
+      <li><h3>We see who's in</h3><p>We're gauging interest from a small group of invited families before anything is locked down.</p></li>
+      <li><h3>We follow up</h3><p>Interested families hear from us directly with the plan, well before anyone has to decide.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="goal" id="interest">
+  <div class="crease" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow">Interest form</p>
+    <h2>Interested? Let us know.</h2>
+    <p class="sub">Four quick answers so we know who's interested. That's all we need for now.</p>
+    <form id="iform" class="iform" novalidate>
+      <div class="field"><label for="f-parent">Your name</label><input id="f-parent" name="entry.1136756909" type="text" autocomplete="name" required maxlength="80"></div>
+      <div class="field"><label for="f-player">Player's name</label><input id="f-player" name="entry.584139173" type="text" autocomplete="off" required maxlength="80"></div>
+      <div class="row">
+        <div class="field grow"><label for="f-team">Fall house league team</label><input id="f-team" name="entry.402021655" type="text" autocomplete="off" required maxlength="80"></div>
+        <div class="field num-f"><label for="f-num">Jersey #</label><input id="f-num" name="entry.284829705" type="text" inputmode="numeric" autocomplete="off" required maxlength="3"></div>
+      </div>
+      <p class="err" id="formErr" role="alert" hidden></p>
+      <button class="btn" id="formBtn" type="submit">Count us interested</button>
+      <p class="fine">No payment, no tryout, no commitment.</p>
+    </form>
+    <div class="done" id="done" hidden tabindex="-1">
+      <h3>Got it. Thank you.</h3>
+      <p id="doneMsg">We have your interest on the list and will follow up with details.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Fair questions</p>
+      <h2>Before you ask</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Does this replace spring house league?</summary><p>No. It's an informal supplement. Players stay in spring house league and add this team on top.</p></details>
+      <details><summary>Why were we invited?</summary><p>We're inviting a small group of players and families who fit the culture we want: kids who work hard, are coachable and are good teammates. We think yours does.</p></details>
+      <details><summary>Does filling out the form commit us to anything?</summary><p>Nothing at all. It tells us you'd like to hear more. You'll get the details before any decision is asked of you.</p></details>
+      <details><summary>Is this a tryout?</summary><p>No. Right now we only want to know which families are interested.</p></details>
+      <details><summary>Where are practices?</summary><p>Polar Ice Wake Forest and Polar Ice Raleigh.</p></details>
+      <details><summary>What about schedule, cost and tournaments?</summary><p>All still to be decided, and it depends on interest. Interested families will get the full picture up front, before committing.</p></details>
+      <details><summary>Why do you need the fall team and jersey number?</summary><p>So we can match your reply to the right player. We use the information only to follow up with your family about this team.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Spring 10U Development Team · Sent to a small group of invited families. This is an informal, independent team and is not run by the house league or by Polar Ice. Information you share is used only to follow up about this team.</div>
+</footer>
+
+<div class="stick"><a class="btn" href="#interest">I'm interested</a></div>
+
+<script>
+(function(){
+  var ACTION="https://docs.google.com/forms/d/e/1FAIpQLSdBlu08PpUCkMtzH_Zkbh6XxV_7I2Uppym44Yj6mUqhNp0w2A/formResponse";
+  var VIEW="https://docs.google.com/forms/d/e/1FAIpQLSdBlu08PpUCkMtzH_Zkbh6XxV_7I2Uppym44Yj6mUqhNp0w2A/viewform";
+  var f=document.getElementById("iform"),btn=document.getElementById("formBtn"),err=document.getElementById("formErr"),done=document.getElementById("done");
+  function fail(){
+    btn.disabled=false;btn.textContent="Count us interested";
+    err.innerHTML="";err.appendChild(document.createTextNode("That didn't go through. Please try again, or use "));
+    var a=document.createElement("a");a.href=VIEW;a.target="_blank";a.rel="noopener";a.textContent="this backup form";err.appendChild(a);
+    err.appendChild(document.createTextNode("."));err.hidden=false;
+  }
+  f.addEventListener("submit",function(e){
+    e.preventDefault();err.hidden=true;
+    var ok=true,first=null,body=new URLSearchParams();
+    Array.prototype.forEach.call(f.querySelectorAll("input"),function(i){
+      var v=i.value.trim();i.classList.toggle("bad",!v);
+      if(!v){ok=false;first=first||i}
+      body.append(i.name,v);
+    });
+    if(!ok){err.textContent="Please fill in all four boxes.";err.hidden=false;first.focus();return}
+    btn.disabled=true;btn.textContent="Sending...";
+    fetch(ACTION,{method:"POST",mode:"no-cors",body:body}).then(function(){
+      var who=document.getElementById("f-player").value.trim();
+      document.getElementById("doneMsg").textContent="We have "+who+" on the interest list and will follow up with details.";
+      f.hidden=true;done.hidden=false;done.focus();
+      var st=document.querySelector(".stick");if(st)st.hidden=true;
+    }).catch(fail);
+  });
+})();
+</script>
+</body>
+</html>
